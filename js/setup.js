@@ -115,7 +115,9 @@ userNameInput.addEventListener('invalid', function () {
 
 // Смена цветов
 
-var index = 0;
+var fireballCurrentColorIndex = 0;
+var coatCurrentColorIndex = 0;
+var eyesCurrentColorIndex = 0;
 
 var setupWizard = document.querySelector('.setup-wizard');
 var setupWizardEyes = setupWizard.querySelector('.wizard-eyes');
@@ -125,27 +127,27 @@ var wizardEyesColorInput = formSetup.querySelector('input[name="eyes-color"]');
 var wizardCoatColorInput = formSetup.querySelector('input[name="coat-color"]');
 
 setupWizardFireball.addEventListener('click', function () {
-  setupWizardFireball.style.background = fireballColorArray[index];
-  index++;
-  if (index === fireballColorArray.length) {
-    index = 0;
+  setupWizardFireball.style.background = fireballColorArray[fireballCurrentColorIndex];
+  fireballCurrentColorIndex++;
+  if (fireballCurrentColorIndex === fireballColorArray.length) {
+    fireballCurrentColorIndex = 0;
   }
 });
 
-var setupWizardPropertyHandler = function (prop, arr) {
-  prop.addEventListener('click', function () {
-    prop.style.fill = arr[index];
-    if (prop === setupWizardCoat) {
-      wizardCoatColorInput.value = arr[index];
-    } else if (prop === setupWizardEyes) {
-      wizardEyesColorInput.value = arr[index];
-    }
-    index++;
-    if (index === arr.length) {
-      index = 0;
-    }
-  });
-};
+setupWizardCoat.addEventListener('click', function () {
+  setupWizardCoat.style.fill = coatColorArray[coatCurrentColorIndex];
+  wizardCoatColorInput.value = coatColorArray[eyesCurrentColorIndex];
+  coatCurrentColorIndex++;
+  if (eyesCurrentColorIndex === coatColorArray.length) {
+    coatCurrentColorIndex = 0;
+  }
+});
 
-setupWizardPropertyHandler(setupWizardCoat, coatColorArray);
-setupWizardPropertyHandler(setupWizardEyes, eyesColorArray);
+setupWizardEyes.addEventListener('click', function () {
+  setupWizardEyes.style.fill = eyesColorArray[eyesCurrentColorIndex];
+  wizardEyesColorInput.value = eyesColorArray[eyesCurrentColorIndex];
+  eyesCurrentColorIndex++;
+  if (eyesCurrentColorIndex === eyesColorArray.length) {
+    eyesCurrentColorIndex = 0;
+  }
+});
