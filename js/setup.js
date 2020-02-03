@@ -49,7 +49,6 @@ var ENTER_KEY = 'Enter';
 
 var setup = document.querySelector('.setup');
 var formSetup = document.querySelector('.setup-wizard-form');
-var formSubmitButton = formSetup.querySelector('.setup-submit');
 var setupOpenButton = document.querySelector('.setup-open');
 var setupCloseButton = formSetup.querySelector('.setup-close');
 var userNameInput = formSetup.querySelector('.setup-user-name');
@@ -102,7 +101,7 @@ userNameInput.addEventListener('blur', function () {
 
 // Валидация
 
-userNameInput.addEventListener('invalid', function (evt) {
+userNameInput.addEventListener('invalid', function () {
   if (userNameInput.validity.tooShort) {
     userNameInput.setCustomValidity('Имя ндолжно состоять минимум из 2-х символов');
   } else if (userNameInput.validity.tooLong) {
@@ -114,18 +113,6 @@ userNameInput.addEventListener('invalid', function (evt) {
   }
 });
 
-// Отправка формы
-/*
-formSubmitButton.addEventListener('click', function () {
-  formSetup.submit();
-});
-
-formSubmitButton.addEventListener('keydown', function (evt) {
-  if (evt.key === ENTER_KEY) {
-    formSetup.submit();
-  }
-});
-*/
 // Смена цветов
 
 var index = 0;
@@ -136,24 +123,6 @@ var setupWizardCoat = setupWizard.querySelector('.wizard-coat');
 var setupWizardFireball = document.querySelector('.setup-fireball-wrap');
 var wizardEyesColorInput = formSetup.querySelector('input[name="eyes-color"]');
 var wizardCoatColorInput = formSetup.querySelector('input[name="coat-color"]');
-
-/*
-setupWizardCoat.addEventListener('click', function () {
-  setupWizardCoat.style.fill = coatColorArray[index];
-  index++;
-  if (index === coatColorArray.length) {
-    index = 0;
-  }
-});
-
-setupWizardEyes.addEventListener('click', function () {
-  setupWizardEyes.style.fill = eyesColorArray[index];
-  index++;
-  if (index === eyesColorArray.length) {
-    index = 0;
-  }
-});
-*/
 
 setupWizardFireball.addEventListener('click', function () {
   setupWizardFireball.style.background = fireballColorArray[index];
